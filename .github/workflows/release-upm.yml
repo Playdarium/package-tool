@@ -1,0 +1,49 @@
+name: Create Tag on Main Branch Update
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'Release/package.json'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout branch main
+        uses: actions/checkout@v4
+        with:
+          ref: 'main'
+          path: './repository'
+
+      - name: Checkout branch upm
+        uses: actions/checkout@v4
+        with:
+          ref: 'upm'
+          path: './upm-package'
+
+      - name: Get version from package.json
+        id: version
+        run: |
+          echo "version=$(grep -o '"version": "[^"]*"' ./repository/Release/package.json | awk -F'"' '{print $4}')" >> $GITHUB_OUTPUT
+        shell: bash
+
+      - name: Copy package files from Release folder
+        run: |
+          rm -rf ./upm-package/*
+          cp -r ./repository/Release/* ./upm-package
+        shell: bash
+      
+      # Check in Unity Package on Release branch
+      - name: Add & Commit Release Changes
+        uses: EndBug/add-and-commit@v9
+        with:
+          author_name: Github Action Bot
+          message: 'Auto-updated package contents'
+          cwd: './upm-package'
+          new_branch: 'upm'
+          tag: v${{ steps.version.outputs.version }}
+          push: true

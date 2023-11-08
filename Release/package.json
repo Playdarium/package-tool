@@ -1,0 +1,38 @@
+{
+  "name": "com.playdarium.package-tool",
+  "version": "1.0.3",
+  "displayName": "Package Tool",
+  "description": "Tool for create unity packages",
+  "category": "unity",
+  "unity": "2021.3",
+  "homepage": "https://github.com/playdarium/package-tool",
+  "documentationUrl": "https://github.com/playdarium/package-tool/README.md",
+  "changelogUrl": "https://github.com/playdarium/package-tool/CHANGELOG.md",
+  "licensesUrl": "https://github.com/playdarium/package-tool/LICENSE",
+  "keywords": [
+    "unity",
+    "package",
+    "upm",
+    "npm",
+    "openupm"
+  ],
+  "samples": [
+    {
+      "displayName": "Example Project",
+      "description": "This is example project for check test samples",
+      "path": "Samples~/Example Project"
+    }
+  ],
+  "author": {
+    "name": "Playdarium",
+    "email": "playdarium@gmail.com",
+    "url": "https://playdarium.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/playdarium/package-tool.git"
+  },
+  "bugs": {
+    "url": "https://github.com/playdarium/package-tool/issues"
+  }
+}
